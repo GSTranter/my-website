@@ -1,8 +1,33 @@
 ---
+import Avatar from '../components/Avatar.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle = "Home Page";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-    <h2>My awesome blog subtitle</h2>
+    <div class="content-container">
+        <div class="card-details">
+            <Avatar />
+            <div class="text-detail">
+                <h3>George Tranter</h3>
+                <h4 class="highlight">Software Developer</h4>
+                <p>Newcastle, UK</p>
+            </div>
+        </div>
+    </div>
 </BaseLayout>
+
+<style>
+    .card-details {
+        display: flex;
+        gap: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .text-detail {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 0.5rem;
+    }
+</style>
