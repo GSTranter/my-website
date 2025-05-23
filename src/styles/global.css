@@ -11,14 +11,6 @@ body {
   line-height: 1.5;
 }
 
-html.dark {
-  background-color: #0d0950;
-  color: #fff;
-}
-
-.dark .nav-links a {
-  color: #fff;
-}
 
 * {
   box-sizing: border-box;
@@ -30,19 +22,6 @@ h1 {
 }
 
 /* nav styles */
-
-.hamburger {
-  padding-right: 20px;
-  cursor: pointer;
-}
-
-.hamburger .line {
-  display: block;
-  width: 40px;
-  height: 5px;
-  margin-bottom: 10px;
-  background-color: #ff9776;
-}
 
 .nav-links {
   width: 100%;
@@ -84,9 +63,5 @@ h1 {
   .nav-links a {
     display: inline-block;
     padding: 15px 20px;
-  }
-
-  .hamburger {
-    display: none;
   }
 }
