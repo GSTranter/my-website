@@ -1,7 +1,10 @@
 ---
 import Avatar from '../components/Avatar.astro';
+import RecentActivity from '../components/RecentActivity.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
 const pageTitle = "Home Page";
+
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -41,6 +44,8 @@ const pageTitle = "Home Page";
             Less
         </div>
     </div>
+
+    <RecentActivity class="recent-activity" />
 </BaseLayout>
 
 <style>
@@ -93,6 +98,9 @@ const pageTitle = "Home Page";
         padding: 0.5rem 1rem;
     }
 
+    .recent-activity {
+        margin-top: 1rem
+    }
 </style>
 
 <script>
