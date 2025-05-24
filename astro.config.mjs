@@ -14,7 +14,7 @@ export default defineConfig({
         sanityIntegration({
           projectId: PUBLIC_SANITY_STUDIO_PROJECT_ID,
           dataset: PUBLIC_SANITY_STUDIO_DATASET,
-          useCdn: true,
+          useCdn: false,
           studioBasePath: '/admin',
         }),
       react(),
