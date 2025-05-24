@@ -68,9 +68,16 @@ a {
 }
 
 /* MEDIUM */
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 800px) {
   body {
-    max-width: 40%;
+    max-width: 50%;
+  }
+}
+
+/* LARGE */
+@media screen and (min-width: 1200px) {
+  body {
+    max-width: 33%;
   }
 }
 
