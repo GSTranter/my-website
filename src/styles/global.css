@@ -58,7 +58,7 @@ p {
 /* SMALL */
 @media screen and (min-width: 600px) {
   body {
-    max-width: 75%;
+    max-width: 65%;
   }
 
   .nav-links {
@@ -78,7 +78,7 @@ p {
 /* MEDIUM */
 @media screen and (min-width: 1000px) {
   body {
-    max-width: 50%;
+    max-width: 40%;
   }
 
   .nav-links {
