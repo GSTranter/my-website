@@ -1,11 +1,14 @@
 ---
 import DocumentText from "./icons/DocumentText.astro";
 import Home from "./icons/Home.astro";
+
+const currentPath = Astro.url.pathname;
+
 ---
 
 <div class="nav-links">
-    <a href="/"><Home class="icon" />Home</a>
-    <a href="/notes"><DocumentText class="icon"/>Notes</a>
+    <a class={currentPath === '/' ? 'active' : ''} href="/"><Home class="icon" />Home</a>
+    <a class={currentPath === '/notes' ? 'active' : ''} href="/notes"><DocumentText class="icon"/>Notes</a>
 </div>
 
 <style>
@@ -28,8 +31,13 @@ import Home from "./icons/Home.astro";
 
         transition: all .25s ease-in-out;
 
-        &:hover {
+
+        &.active {
             color: var(--highlight)
+        }
+
+        &:hover {
+            color: var(--header)
         }
     }
 
@@ -37,4 +45,5 @@ import Home from "./icons/Home.astro";
         width: 1.25rem;
         margin-top: -0.1rem;
     }
+
 </style>
