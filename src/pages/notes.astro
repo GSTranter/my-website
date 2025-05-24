@@ -1,4 +1,5 @@
 ---
+export const prerender = true
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { sanityClient } from "sanity:client";
@@ -11,7 +12,6 @@ const pageTitle = "Notes"
 <ul>
 {
   posts.map((post: any) => {
-    console.log(post);
     return (
       <li><a href={"/posts/" + post.slug.current}>{post.title}</a></li>
     );
