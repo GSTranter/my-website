@@ -1,8 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { sanityClient } from "sanity:client";
+const posts = await sanityClient.fetch(`*[_type == "post" && defined(slug)]`);
 
 const pageTitle = "Notes"
 ---
 
 <BaseLayout pageTitle={pageTitle}>
+<ul>
+{
+  posts.map((post) => {
+    console.log(post);
+    return (
+      <li><a href={"/posts/" + post.slug.current}>{post.title}</a></li>
+    );
+  })
+}
+</ul>
+
 </BaseLayout>
