@@ -15,13 +15,7 @@ html {
 body {
   margin: 0 auto;
   width: 100%;
-  max-width: 80ch;
   padding: 0.5rem 2rem;
-}
-
-
-* {
-  box-sizing: border-box;
 }
 
 h1 {
@@ -52,12 +46,21 @@ p {
 }
 
 .content-container {
-  border: var(--border-size) solid var(--body);
+  border: var(--border-size) solid var(--header);
   border-radius: var(--rounded);
   padding: 0.5rem 1rem; 
 }
 
-@media screen and (min-width: 636px) {
+.hidden {
+  display: none !important;
+}
+
+/* SMALL */
+@media screen and (min-width: 600px) {
+  body {
+    max-width: 75%;
+  }
+
   .nav-links {
     margin-left: 5em;
     display: block;
@@ -71,3 +74,24 @@ p {
     padding: 15px 20px;
   }
 }
+
+/* MEDIUM */
+@media screen and (min-width: 1000px) {
+  body {
+    max-width: 50%;
+  }
+
+  .nav-links {
+    margin-left: 5em;
+    display: block;
+    position: static;
+    width: auto;
+    background: none;
+  }
+
+  .nav-links a {
+    display: inline-block;
+    padding: 15px 20px;
+  }
+}
+

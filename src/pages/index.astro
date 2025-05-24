@@ -13,6 +13,26 @@ const pageTitle = "Home Page";
                 <h4 class="highlight">Software Developer</h4>
                 <p>Newcastle, UK</p>
             </div>
+
+            <div id="showDetailsLg" class="helper-text-lg">
+                Details
+            </div>
+
+            <div id="hideDetailsLg" class="helper-text-lg hidden">
+                Less
+            </div>
+        </div>
+
+        <div id="details" class="hidden">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at commodo dolor. Fusce ex odio, consequat non euismod vitae, blandit sit amet leo. Vestibulum mattis luctus justo, id laoreet risus feugiat nec.
+        </div>
+
+        <div id="showDetails" class="helper-text">
+            Details
+        </div>
+
+        <div id="hideDetails" class="helper-text hidden">
+            Less
         </div>
     </div>
 </BaseLayout>
@@ -30,4 +50,60 @@ const pageTitle = "Home Page";
         justify-content: space-between;
         gap: 0.5rem;
     }
+
+    .helper-text {
+        text-decoration: underline;
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+        cursor: pointer;
+    }
+
+    .helper-text-lg {
+        text-decoration: underline;
+        text-align: end;
+        flex-grow: 1;
+        margin-top: auto;
+        cursor: pointer;
+        display: none;
+    }
+
+    @media screen and (min-width: 600px) {
+        .helper-text {
+            display: none;
+        }
+
+        .helper-text-lg {
+            display: block;
+        }
+    }
+
+    #details {
+        padding: 0.5rem 1rem;
+    }
+
 </style>
+
+<script>
+    const handleToggleClick = () => {
+        const detailsElement = document.getElementById("details");
+        detailsElement?.classList.toggle("hidden");
+
+        const showElement = document.getElementById("showDetails");
+        showElement?.classList.toggle("hidden");
+
+        const hideElement = document.getElementById("hideDetails");
+        hideElement?.classList.toggle("hidden");
+
+        const showDetailsLg = document.getElementById("showDetailsLg");
+        showDetailsLg?.classList.toggle("hidden");
+
+        const hideDetailsLg = document.getElementById("hideDetailsLg");
+        hideDetailsLg?.classList.toggle("hidden");
+    }
+
+    document.getElementById("showDetails")?.addEventListener("click", handleToggleClick);
+    document.getElementById("hideDetails")?.addEventListener("click", handleToggleClick);
+    document.getElementById("showDetailsLg")?.addEventListener("click", handleToggleClick);
+    document.getElementById("hideDetailsLg")?.addEventListener("click", handleToggleClick);
+</script>
