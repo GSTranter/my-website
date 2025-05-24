@@ -1,5 +1,6 @@
 ---
 import Avatar from '../components/Avatar.astro';
+import MapPin from '../components/icons/MapPin.astro';
 import RecentActivity from '../components/RecentActivity.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -14,7 +15,7 @@ const pageTitle = "Home Page";
             <div class="text-detail">
                 <h3>George Tranter</h3>
                 <h4 class="highlight">Software Developer</h4>
-                <p>Newcastle, UK</p>
+                <div class="location"><MapPin class="icon"/>Newcastle, UK</div>
             </div>
 
             <div id="showDetailsLg" class="helper-text-lg">
@@ -100,6 +101,16 @@ const pageTitle = "Home Page";
 
     .recent-activity {
         margin-top: 1rem
+    }
+
+    .location {
+        display: flex;
+        gap: 0.25rem;
+    }
+
+    .icon {
+        width: 1rem;
+        margin-top: -0.1rem;
     }
 </style>
 
