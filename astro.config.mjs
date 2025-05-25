@@ -16,9 +16,9 @@ export default defineConfig({
             dataset: PUBLIC_SANITY_STUDIO_DATASET,
             useCdn: false,
             studioBasePath: '/admin',
-            stega: {
-                studioUrl: "/admin",
-            },
+            // stega: {
+            //     studioUrl: "/admin",
+            // },
         }),
         react(),
     ],
