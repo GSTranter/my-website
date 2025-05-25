@@ -4,7 +4,7 @@ import react from "@astrojs/react";
 import { loadEnv } from "vite";
 import netlify from "@astrojs/netlify";
 
-const { PUBLIC_SANITY_STUDIO_PROJECT_ID, PUBLIC_SANITY_STUDIO_DATASET } = loadEnv( process.env.NODE_ENV, process.cwd(), '');
+const { PUBLIC_SANITY_STUDIO_PROJECT_ID, PUBLIC_SANITY_STUDIO_DATASET } = loadEnv(process.env.NODE_ENV, process.cwd(), '');
 
 export default defineConfig({
     site: "https://george-tranter.netlify.app/",
@@ -12,12 +12,15 @@ export default defineConfig({
     output: "server",
     integrations: [
         sanityIntegration({
-          projectId: PUBLIC_SANITY_STUDIO_PROJECT_ID,
-          dataset: PUBLIC_SANITY_STUDIO_DATASET,
-          useCdn: false,
-          studioBasePath: '/admin',
+            projectId: PUBLIC_SANITY_STUDIO_PROJECT_ID,
+            dataset: PUBLIC_SANITY_STUDIO_DATASET,
+            useCdn: false,
+            studioBasePath: '/admin',
+            stega: {
+                studioUrl: "/admin",
+            },
         }),
-      react(),
+        react(),
     ],
     adapter: netlify(),
 });

@@ -1,27 +1,32 @@
 ---
-export const prerender = true;
-
 import type { SanityDocument } from "@sanity/client";
 import { loadQuery } from "../../sanity/lib/load-query";
-import PortableText from "../../components/Document/PortableText.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PortableText from "../../components/document/PortableText.astro";
 
 export async function getStaticPaths() {
-    const { data: notes } = await loadQuery<SanityDocument[]>({
+    const { data: posts } = await loadQuery<SanityDocument[]>({
         query: `*[_type == "note"]`,
     });
 
-    return notes.map(({ slug }) => ({ params: { slug: slug.current } }));
+    return posts.map(({ slug }) => {
+        return {
+            params: {
+                slug: slug.current,
+            },
+        };
+    });
 }
-
-const { slug } = Astro.params;
 
 const { params } = Astro;
 
-const { data: note } = await loadQuery<SanityDocument>({
+const { data: post } = await loadQuery<{ title: string; body: any[] }>({
     query: `*[_type == "note" && slug.current == $slug][0]`,
     params,
 });
 ---
 
-<h1>A post about {note.title}</h1>
-<PortableText portableText={note.body} />
+<BaseLayout>
+    <h1>A post about {post.title}</h1>
+    <PortableText portableText={post.body} />
+</BaseLayout>
