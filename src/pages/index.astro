@@ -1,13 +1,12 @@
 ---
-export const prerender = true
+export const prerender = true;
 
-import Avatar from '../components/Avatar.astro';
-import MapPin from '../components/icons/MapPin.astro';
-import RecentActivity from '../components/RecentActivity.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Avatar from "../components/Avatar.astro";
+import MapPin from "../components/icons/MapPin.astro";
+import RecentActivity from "../components/RecentActivity.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const pageTitle = "Home Page";
-
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -17,35 +16,31 @@ const pageTitle = "Home Page";
             <div class="text-detail">
                 <h3>George Tranter</h3>
                 <h4 class="highlight">Software Developer</h4>
-                <div class="location"><MapPin class="icon"/>Newcastle, UK</div>
+                <div class="location"><MapPin class="icon" />Newcastle, UK</div>
             </div>
 
-            <div id="showDetailsLg" class="helper-text-lg">
-                Details
-            </div>
+            <div id="showDetailsLg" class="helper-text-lg">Details</div>
         </div>
 
         <div id="details" class="hidden">
-            To keep things straightforward, I'm a software developer who loves building things to solve problems.
-            <br><br>
-            Always keeping my eyes open to opportunities to try new tech, but a firm believer in only using a tool if it's the right fit for the job, and for the customer.
-            <br>
+            Simply building software to solve problems.
+            <br /><br />
+            Always keeping my eyes open to opportunities to try new tech, but a firm
+            believer in only using a tool if it's the right fit for the job, and
+            for the customer.
+            <br />
             Keep it simple stupid.
-            <br><br>
-            I've had exposure to a wide variety of technologies in my career, but my heart is always with web development and data engineering - so naturally, I love a dashboard.
+            <br /><br />
+            I've had exposure to a wide variety of technologies in my career, but
+            my heart is always with web development and data engineering - so naturally,
+            I love a dashboard.
         </div>
 
-        <div id="showDetails" class="helper-text">
-            Details
-        </div>
+        <div id="showDetails" class="helper-text">Details</div>
 
-        <div id="hideDetails" class="helper-text hidden">
-            Less
-        </div>
+        <div id="hideDetails" class="helper-text hidden">Less</div>
 
-        <div id="hideDetailsLg" class="helper-text-lg hidden">
-            Less
-        </div>
+        <div id="hideDetailsLg" class="helper-text-lg hidden">Less</div>
     </div>
 
     <RecentActivity class="recent-activity" />
@@ -84,7 +79,7 @@ const pageTitle = "Home Page";
 
     #hideDetailsLg {
         padding-right: 1rem;
-        padding-bottom: 0.5rem
+        padding-bottom: 0.5rem;
     }
 
     @media screen and (min-width: 600px) {
@@ -102,7 +97,7 @@ const pageTitle = "Home Page";
     }
 
     .recent-activity {
-        margin-top: 1rem
+        margin-top: 1rem;
     }
 
     .location {
@@ -132,10 +127,18 @@ const pageTitle = "Home Page";
 
         const hideDetailsLg = document.getElementById("hideDetailsLg");
         hideDetailsLg?.classList.toggle("hidden");
-    }
+    };
 
-    document.getElementById("showDetails")?.addEventListener("click", handleToggleClick);
-    document.getElementById("hideDetails")?.addEventListener("click", handleToggleClick);
-    document.getElementById("showDetailsLg")?.addEventListener("click", handleToggleClick);
-    document.getElementById("hideDetailsLg")?.addEventListener("click", handleToggleClick);
+    document
+        .getElementById("showDetails")
+        ?.addEventListener("click", handleToggleClick);
+    document
+        .getElementById("hideDetails")
+        ?.addEventListener("click", handleToggleClick);
+    document
+        .getElementById("showDetailsLg")
+        ?.addEventListener("click", handleToggleClick);
+    document
+        .getElementById("hideDetailsLg")
+        ?.addEventListener("click", handleToggleClick);
 </script>
