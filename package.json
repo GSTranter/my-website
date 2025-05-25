@@ -12,8 +12,11 @@
     "@astrojs/netlify": "^6.3.4",
     "@astrojs/react": "^4.3.0",
     "@astrojs/rss": "^4.0.11",
+    "@portabletext/types": "^2.0.13",
     "@sanity/astro": "^3.2.6",
+    "@sanity/image-url": "^1.1.0",
     "astro": "^5.8.0",
+    "astro-portabletext": "^0.11.1",
     "vite": "^6.3.5"
   }
 }

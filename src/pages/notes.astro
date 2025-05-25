@@ -1,22 +1,23 @@
 ---
-export const prerender = true
+export const prerender = true;
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { sanityClient } from "sanity:client";
-const posts = await sanityClient.fetch(`*[_type == "post" && defined(slug)]`);
+const notes = await sanityClient.fetch(`*[_type == "note" && defined(slug)]`);
 
-const pageTitle = "Notes"
+const pageTitle = "Notes";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-<ul>
-{
-  posts.map((post: any) => {
-    return (
-      <li><a href={"/posts/" + post.slug.current}>{post.title}</a></li>
-    );
-  })
-}
-</ul>
-
+    <ul>
+        {
+            notes.map((note: any) => {
+                return (
+                    <li>
+                        <a href={"/notes/" + note.slug.current}>{note.title}</a>
+                    </li>
+                );
+            })
+        }
+    </ul>
 </BaseLayout>
