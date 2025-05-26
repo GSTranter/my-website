@@ -1,5 +1,13 @@
 ---
+import { sanityClient } from "sanity:client";
+import NotePreview from "../components/NotePreview.astro";
+
 const { class: className, ...rest  } = Astro.props
+
+const notes = await sanityClient.fetch(
+    `*[_type == "note" && defined(slug)]{ ..., tags[]-> } | order(publishedAt desc)`
+);
+
 ---
 
 
@@ -7,5 +15,26 @@ const { class: className, ...rest  } = Astro.props
     <h3>
         Recent Activity
     </h3>
+
+    <ul class="notes-container">
+        {
+            notes.map((note: any) => (
+                <li>
+                    <NotePreview note={note} />
+                </li>
+            ))
+        }
+    </ul>
 </div>
+
+<style>
+    .notes-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        list-style-type: none;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+</style>
 

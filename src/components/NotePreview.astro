@@ -1,26 +1,21 @@
 ---
-import type { SanityDocument } from "@sanity/client";
-import { loadQuery } from "../sanity/lib/load-query";
+import TagPreview from "./TagPreview.astro";
 
 const { note } = Astro.props;
-
-const tagIds = note.tags?.map((note: any) => note._ref) || [];
-
-const { data: tags } = await loadQuery<SanityDocument[]>({
-    query: `*[_type == "tags" && _ref in $tagIds]`,
-    params: { tagIds },
-});
 ---
 
 <cms-content
     data-note={JSON.stringify(note)}
-    data-tag={tags}
-    data-tagids={tagIds}
 >
     <div class="container-link content-container">
         <h4>{note.title}</h4>
+        <div class="tags">
+            {
+                note.tags?.map((tag: any) => <TagPreview tag={ tag } />)
+            }
+        </div>
+
     </div>
-    {tags.map((tag: any) => <div>{tag.title}</div>)}
 </cms-content>
 
 <style>
@@ -29,6 +24,12 @@ const { data: tags } = await loadQuery<SanityDocument[]>({
         text-decoration: none;
         cursor: pointer;
     }
+
+    .tags {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
 </style>
 
 <script>
@@ -36,8 +37,7 @@ const { data: tags } = await loadQuery<SanityDocument[]>({
         connectedCallback() {
             const note = JSON.parse(this.dataset.note as string);
             const content = this.querySelector("div");
-            console.log(note);
-            console.log(this.dataset.tagids);
+
             content?.addEventListener("click", () => {
                 window.location.href = `${window.location.origin}/notes/${note?.slug.current}`;
             });
