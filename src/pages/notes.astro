@@ -1,23 +1,48 @@
 ---
 export const prerender = true;
 
+import NotePreview from "../components/NotePreview.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { sanityClient } from "sanity:client";
-const notes = await sanityClient.fetch(`*[_type == "note" && defined(slug)]`);
+
+const notes = await sanityClient.fetch(
+    `*[_type == "note" && defined(slug)]{ ..., tags[]-> } | order(publishedAt desc)`
+);
 
 const pageTitle = "Notes";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-    <ul>
+    <h3>
+        Notes
+    </h3>
+    <div>
+        <p class="desc-p">A dumping ground for thoughts. Not particularly coherent or cohesive, more a place to refer back to in future.</p>
+        <p class="desc-p">I'll likely take a few of these and wrap them up in more thought-through posts later on down the line, but for now, I  just wanted somewhere to track what I was up to.</p>
+    </div>
+
+    <ul class="notes-container">
         {
-            notes.map((note: any) => {
-                return (
-                    <li>
-                        <a href={"/notes/" + note.slug.current}>{note.title}</a>
-                    </li>
-                );
-            })
+            notes.map((note: any) => (
+                <li>
+                    <NotePreview note={note} />
+                </li>
+            ))
         }
     </ul>
 </BaseLayout>
+
+<style>
+    .notes-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 2rem;
+    }
+
+    .desc-p {
+        margin-top: 0.5rem;
+    }
+</style>

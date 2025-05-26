@@ -1,0 +1,43 @@
+---
+
+const { tag } = Astro.props
+
+---
+
+<tag-link data-tag={JSON.stringify(tag)} class="tag-container">
+    <div class="tag">
+        { tag.title }
+    </div>
+</tag-link>
+
+<style>
+    .tag-container {
+        border: var(--border-size) solid var(--header);
+        border-radius: var(--rounded);
+        padding: 0.25rem 0.5rem;
+        transition: all .2s ease-in-out;
+
+        &:hover {
+            color: var(--highlight);
+            border-color: var(--highlight);
+            transform: translateY(-0.1rem);
+        }
+    }
+</style>
+
+<script>
+    class TagLink extends HTMLElement {
+        connectedCallback() {
+            const tag = JSON.parse(this.dataset.tag as string);
+            const content = this.querySelector("div");
+
+            // content?.addEventListener("click", (event: Event) => {
+            //     console.log("ASDASDSA")
+            //     event.stopImmediatePropagation()
+            //     window.location.href = `${window.location.origin}/tags/${tag?.slug.current}`;
+            // });
+        }
+    }
+
+    customElements.define("tag-link", TagLink);
+</script>

@@ -7,6 +7,7 @@ export const noteType = defineType({
     defineField({
       name: "title",
       type: "string",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "slug",
@@ -15,29 +16,18 @@ export const noteType = defineType({
         source: "title",
         maxLength: 96,
       },
-    }),
-    defineField({
-      name: "mainImage",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: "alt",
-          type: "string",
-          title: "Alternative Text",
-        },
-      ],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "tags",
       type: "array",
       of: [{ type: "reference", to: { type: "tag" } }],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "publishedAt",
-      type: "datetime",
+      type: "date",
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "body",

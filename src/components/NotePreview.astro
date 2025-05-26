@@ -1,0 +1,48 @@
+---
+import TagPreview from "./TagPreview.astro";
+
+const { note } = Astro.props;
+---
+
+<cms-content
+    data-note={JSON.stringify(note)}
+>
+    <div class="container-link content-container">
+        <h4>{note.title}</h4>
+        <div class="tags">
+            {
+                note.tags?.map((tag: any) => <TagPreview tag={ tag } />)
+            }
+        </div>
+
+    </div>
+</cms-content>
+
+<style>
+    .container-link {
+        color: var(--body);
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .tags {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+</style>
+
+<script>
+    class CmsContent extends HTMLElement {
+        connectedCallback() {
+            const note = JSON.parse(this.dataset.note as string);
+            const content = this.querySelector("div");
+
+            content?.addEventListener("click", () => {
+                window.location.href = `${window.location.origin}/notes/${note?.slug.current}`;
+            });
+        }
+    }
+
+    customElements.define("cms-content", CmsContent);
+</script>
