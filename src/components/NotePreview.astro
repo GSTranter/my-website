@@ -1,0 +1,48 @@
+---
+import type { SanityDocument } from "@sanity/client";
+import { loadQuery } from "../sanity/lib/load-query";
+
+const { note } = Astro.props;
+
+const tagIds = note.tags?.map((note: any) => note._ref) || [];
+
+const { data: tags } = await loadQuery<SanityDocument[]>({
+    query: `*[_type == "tags" && _ref in $tagIds]`,
+    params: { tagIds },
+});
+---
+
+<cms-content
+    data-note={JSON.stringify(note)}
+    data-tag={tags}
+    data-tagids={tagIds}
+>
+    <div class="container-link content-container">
+        <h4>{note.title}</h4>
+    </div>
+    {tags.map((tag: any) => <div>{tag.title}</div>)}
+</cms-content>
+
+<style>
+    .container-link {
+        color: var(--body);
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    class CmsContent extends HTMLElement {
+        connectedCallback() {
+            const note = JSON.parse(this.dataset.note as string);
+            const content = this.querySelector("div");
+            console.log(note);
+            console.log(this.dataset.tagids);
+            content?.addEventListener("click", () => {
+                window.location.href = `${window.location.origin}/notes/${note?.slug.current}`;
+            });
+        }
+    }
+
+    customElements.define("cms-content", CmsContent);
+</script>

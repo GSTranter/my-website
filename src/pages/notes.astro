@@ -1,23 +1,33 @@
 ---
 export const prerender = true;
 
+import NotePreview from "../components/NotePreview.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { sanityClient } from "sanity:client";
-const notes = await sanityClient.fetch(`*[_type == "note" && defined(slug)]`);
+const notes = await sanityClient.fetch(
+    `*[_type == "note" && defined(slug)]{title, slug, 'tags': tags[]}`
+);
 
 const pageTitle = "Notes";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-    <ul>
+    <ul class="notes-container">
         {
-            notes.map((note: any) => {
-                return (
-                    <li>
-                        <a href={"/notes/" + note.slug.current}>{note.title}</a>
-                    </li>
-                );
-            })
+            notes.map((note: any) => (
+                <li>
+                    <NotePreview note={note} />
+                </li>
+            ))
         }
     </ul>
 </BaseLayout>
+
+<style>
+    .notes-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        list-style-type: none;
+    }
+</style>
