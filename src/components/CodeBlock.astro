@@ -4,6 +4,13 @@ const { code } = Astro.props.node;
 
 ---
 
-<div>
-    <pre><code>{code}</code></pre>
+<div class="code-block">
+    <pre class="code-block"><code>{code}</code></pre>
 </div>
+
+<style>
+    .code-block {
+        max-width: 100%;
+        white-space: pre-wrap;
+    }
+</style>
