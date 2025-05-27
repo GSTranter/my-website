@@ -23,6 +23,12 @@ const { note } = Astro.props;
         color: var(--body);
         text-decoration: none;
         cursor: pointer;
+        transition: all .2s ease-in-out;
+
+        &:hover {
+            border-color: var(--highlight);
+            color: var(--highlight)
+        }
     }
 
     .tags {
