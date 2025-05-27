@@ -3,10 +3,12 @@ import { PortableText as PortableTextInternal } from "astro-portabletext";
 const { portableText } = Astro.props;
 
 import PortableTextImage from "./Image.astro";
+import CodeBlock from "./CodeBlock.astro";
 
 const components = {
     type: {
         image: PortableTextImage,
+        code: CodeBlock,
     },
 };
 ---
